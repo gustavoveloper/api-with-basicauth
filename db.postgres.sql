@@ -1,5 +1,6 @@
 CREATE TABLE posts (
 	id SERIAL PRIMARY KEY,
 	title TEXT NOT NULL,
-	content TEXT NOT NULL
+	content TEXT NOT NULL,
+	registered_at TIMESTAMP NOT NULL DEFAULT now()
 );
