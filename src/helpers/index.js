@@ -16,6 +16,12 @@ module.exports = {
 
     isNonEmptyText: text => (typeof text === 'string' && text.length > 0),
 
+    isNumericText: text => {
+        const nonNumericTextRegexp = /[^0-9]/;
+        
+        return !nonNumericTextRegexp.test(text)
+    },
+
     getErrorResponseBody: error => ({ error, data: null }),
 
     getSuccessResponseBody: data => ({ error: null, data }),

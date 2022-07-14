@@ -60,5 +60,23 @@ Post.returnAllPosts = async () => { // Get all registered posts data
     return result
 };
 
+Post.returnPostById = async id => { // Get an post by ID
+    const result = getDatabaseQueryResult();
+
+    try {
+        const [ postData ] = (await conn.query(`SELECT * FROM posts WHERE id = '${id}';`)).rows;
+
+        if (!postData) throw new Error('Post not found');
+
+        result.setData(postData)
+    } catch({ message: errorMessage }) {
+        if (errorMessage === 'Post not found') result.setError(getDatabaseQueryError(404, errorMessage));
+        
+        else result.setError(getDatabaseQueryError(500, 'Internal server error'))
+    };
+
+    return result
+};
+
 
 module.exports = Post
