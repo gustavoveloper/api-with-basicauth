@@ -1,0 +1,19 @@
+{
+  "name": "api-with-basicauth",
+  "version": "1.0.0",
+  "description": "A webservice to manage posts that uses BasicAuth as authentication method.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "clear && node src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gustavo Oliveira",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-basic-auth": "^1.2.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.7.3"
+  }
+}
