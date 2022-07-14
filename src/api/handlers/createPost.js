@@ -29,7 +29,6 @@ async function createPost(request, response) {
         return response.status(insertionResult.error.code).json(getErrorResponseBody(insertionResult.error.message))
     };
 
-
     return response.status(201).json(getSuccessResponseBody(insertionResult.data))
 };
 

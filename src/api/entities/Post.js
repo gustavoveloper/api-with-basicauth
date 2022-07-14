@@ -78,5 +78,23 @@ Post.returnPostById = async id => { // Get an post by ID
     return result
 };
 
+Post.removePostById = async id => {
+    const result = getDatabaseQueryResult();
+
+    try {
+        const [ postData ] = (await conn.query(`DELETE FROM posts WHERE id = '${id}' RETURNING id, title, now() AS deleted_at;`)).rows;
+
+        if (!postData) throw new Error('The post you are trying to delete does not exist');
+
+        result.setData(postData)
+    } catch({ message: errorMessage }) {
+        if (errorMessage === 'The post you are trying to delete does not exist') result.setError(getDatabaseQueryError(422, errorMessage));
+
+        else result.setError(getDatabaseQueryError(500, 'Internal server error'))
+    };
+
+    return result
+};
+
 
 module.exports = Post
